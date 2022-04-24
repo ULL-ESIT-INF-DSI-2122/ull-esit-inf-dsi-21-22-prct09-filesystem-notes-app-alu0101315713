@@ -74,9 +74,9 @@ yargs.command({
       // Required logic to remove a note
       fs.unlink(`src/notas/${argv.user}/${argv.title}.json`, (err) => {
         if (err) {
-          console.log('Something went wrong when writing your file');
+          console.log(chalk.red('Something went wrong when writing your file'));
         } else {
-          console.log('File removed successfully');
+          console.log(chalk.green('File removed successfully'));
         }
       });
     }
@@ -98,13 +98,13 @@ yargs.command({
       // Required logic to list all notes
       fs.readdir(`src/notas/${argv.user}`, (err, files) => {
         if (err) {
-          console.log('Something went wrong when reading your file');
+          console.log(chalk.red('Something went wrong when reading your file'));
         } else {
           console.log('List of notes:');
           files.forEach((file) => {
             fs.readFile(`src/notas/${argv.user}/${file}`, 'utf8', (err, data) => {
               if (err) {
-                console.log('Something went wrong when reading your file');
+                console.log(chalk.red(('Something went wrong when reading your file')));
               } else {
                 const obj = JSON.parse(data.toString());
                 switch (obj.color) {
@@ -151,10 +151,12 @@ yargs.command({
     if (typeof argv.title === 'string' && typeof argv.user === 'string') {
       // Required logic to read a note
       fs.readFile(`src/notas/${argv.user}/${argv.title}.json`, (err, data) => {
+        const obj = JSON.parse(data.toString());
         if (err) {
-          console.log('Something went wrong when reading your file');
+          console.log(chalk.red('Something went wrong when reading your file'));
         } else {
-          console.log(data.toString());
+          console.log(chalk.green('El mensaje de la nota es:'));
+          console.log(obj.cuerpo);
         }
       });
     }

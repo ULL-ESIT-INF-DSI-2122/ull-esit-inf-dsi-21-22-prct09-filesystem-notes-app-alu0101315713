@@ -196,13 +196,13 @@ handler(argv) {
       // Required logic to list all notes
       fs.readdir(`src/notas/${argv.user}`, (err, files) => {
         if (err) {
-          console.log('Something went wrong when reading your file');
+          console.log(chalk.red('Something went wrong when reading your file'));
         } else {
           console.log('List of notes:');
           files.forEach((file) => {
             fs.readFile(`src/notas/${argv.user}/${file}`, 'utf8', (err, data) => {
               if (err) {
-                console.log('Something went wrong when reading your file');
+                console.log(chalk.red(('Something went wrong when reading your file')));
               } else {
                 const obj = JSON.parse(data.toString());
                 switch (obj.color) {
@@ -228,8 +228,8 @@ handler(argv) {
       });
     }
   },
-
 ```
+
 - Para el comando `list`, solo busco el nombre del usuario, con esta información hago uso de la función `readdir` para leer el directorio, y un forEach para revisar todos los ficheros del directorio (que siempre tendrá el nombre del usuario) con la función ``readFile`, que junto a un switch que revisa el atributo "color" de cada nota, indico haciendo uso de chalk el nombre de cada archivo del color que tenga como atributo. Encaso de existir algún error, saldrá un aviso en rojo.
 
 ```ts
@@ -237,10 +237,12 @@ handler(argv) {
     if (typeof argv.title === 'string' && typeof argv.user === 'string') {
       // Required logic to read a note
       fs.readFile(`src/notas/${argv.user}/${argv.title}.json`, (err, data) => {
+        const obj = JSON.parse(data.toString());
         if (err) {
-          console.log('Something went wrong when reading your file');
+          console.log(chalk.red('Something went wrong when reading your file'));
         } else {
-          console.log(data.toString());
+          console.log(chalk.green('El mensaje de la nota es:'));
+          console.log(obj.cuerpo);
         }
       });
     }
