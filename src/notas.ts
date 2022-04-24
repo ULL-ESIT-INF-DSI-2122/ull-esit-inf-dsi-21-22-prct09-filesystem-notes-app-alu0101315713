@@ -1,13 +1,11 @@
 // Una nota estará formada, como mínimo, por un título, un cuerpo y un color (rojo, verde, azul o amarillo).
 
-export type Color = 'rojo' | 'verde' | 'azul' | 'amarillo';
-
 export class Nota {
   static getNotas: any;
   constructor(
         public titulo: string,
         public cuerpo: string,
-        public color: Color,
+        public color: string,
         public id?: number,
   ) {}
   getTitulo(): string {
@@ -16,7 +14,7 @@ export class Nota {
   getCuerpo(): string {
     return this.cuerpo;
   }
-  getColor(): Color {
+  getColor(): string {
     return this.color;
   }
   getId(): number|undefined {
@@ -28,7 +26,7 @@ export class Nota {
   setCuerpo(cuerpo: string): void {
     this.cuerpo = cuerpo;
   }
-  setColor(color: Color): void {
+  setColor(color: string): void {
     this.color = color;
   }
   setId(id: number): void {
@@ -37,8 +35,4 @@ export class Nota {
   static saveNotas(notas: Nota[]): void {
     localStorage.setItem('notas', JSON.stringify(notas));
   }
-  //   getNotas(): Nota[] {
-  //     const notas = JSON.parse(localStorage.getItem('notas')!);
-  //     return notas === null ? [] : notas;
-  //   }
 }
