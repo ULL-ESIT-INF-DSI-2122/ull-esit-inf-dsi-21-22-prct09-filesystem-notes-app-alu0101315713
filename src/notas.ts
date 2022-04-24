@@ -7,9 +7,7 @@ export class Nota {
         public cuerpo: string,
         public color: string,
         public id?: number,
-  ) {
-    // this.saveNotas(this.libroNotas);
-  }
+  ) {}
   getTitulo(): string {
     return this.titulo;
   }
