@@ -3,6 +3,16 @@ import * as fs from 'fs';
 import {Nota} from './notas';
 import chalk from 'chalk';
 
+/**
+ * @param notas array de notas
+ * @param id id de la nota
+ * @param titulo titulo de la nota
+ * @param cuerpo mensaje de la nota
+ * @param color color de la nota
+ * @param comando comando a ejecutar
+ * @param argv argumentos del comando
+ * @param nota nota a editar
+ */
 yargs.command({
   command: 'add',
   describe: 'Add a new note',
@@ -28,6 +38,9 @@ yargs.command({
       type: 'string',
     },
   },
+  /**
+   * @param argv argumentos del comando
+   */
   handler(argv) {
     if (typeof argv.title === 'string' && typeof argv.body === 'string' &&
     typeof argv.color === 'string' && typeof argv.user === 'string') {
@@ -53,7 +66,17 @@ yargs.command({
     }
   },
 });
-
+/**
+ * @param notas array de notas
+ * @param newTitle nuevo titulo de la nota
+ * @param newBody nuevo cuerpo de la nota
+ * @param newColor nuevo color de la nota
+ * @param newUser nuevo usuario de la nota
+ * @param newId nuevo id de la nota
+ * @param comando comando a ejecutar
+ * @param argv argumentos del comando
+ * @param nota nota a eliminar
+ */
 yargs.command({
   command: 'remove',
   describe: 'Remove a note',
@@ -69,6 +92,9 @@ yargs.command({
       type: 'string',
     },
   },
+  /**
+   * @param argv argumentos del comando
+   */
   handler(argv) {
     if (typeof argv.title === 'string' && typeof argv.user === 'string') {
       // Required logic to remove a note
@@ -83,6 +109,11 @@ yargs.command({
   },
 });
 
+/**
+ * @param user nombre usuario
+ * @param argv argumentos del comando
+ * @param notas notas a listar
+ */
 yargs.command({
   command: 'list',
   describe: 'List all notes',
@@ -93,6 +124,9 @@ yargs.command({
       type: 'string',
     },
   },
+  /**
+   * @param argv argumentos del comando
+   */
   handler(argv) {
     if (typeof argv.user === 'string') {
       // Required logic to list all notes
@@ -132,6 +166,13 @@ yargs.command({
   },
 });
 
+/**
+ * @param user nombre usuario
+ * @param titulo titulo de la nota
+ * @param comando comando a ejecutar
+ * @param argv argumentos del comando
+ * @param cuerpo mensaje de la nota
+ */
 yargs.command({
   command: 'read',
   describe: 'Read a note',
@@ -147,6 +188,9 @@ yargs.command({
       type: 'string',
     },
   },
+  /**
+   * @param argv argumentos del comando
+  */
   handler(argv) {
     if (typeof argv.title === 'string' && typeof argv.user === 'string') {
       // Required logic to read a note
@@ -163,6 +207,18 @@ yargs.command({
   },
 });
 
+/**
+ * @param notas array de notas
+ * @param id id de la nota
+ * @param titulo titulo de la nota
+ * @param cuerpo mensaje de la nota
+ * @param color color de la nota
+ * @param comando comando a ejecutar
+ * @param argv argumentos del comando
+ * @param notas notas a listar
+ * @param newBody nuevo cuerpo de la nota
+ * @param newColor nuevo color de la nota
+ */
 yargs.command({
   command: 'modify',
   describe: 'Modify a note',
@@ -188,6 +244,9 @@ yargs.command({
       type: 'string',
     },
   },
+  /**
+   * @param argv argumentos del comando
+   */
   handler(argv) {
     if (typeof argv.title === 'string' && typeof argv.body === 'string' &&
     typeof argv.color === 'string' && typeof argv.user === 'string') {
